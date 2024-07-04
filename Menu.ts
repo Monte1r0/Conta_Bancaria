@@ -1,38 +1,59 @@
 import readlinesync = require("readline-sync");
 import { colors } from "./src/util/Color";
-import { Conta } from "./src/model/ClasseConta";
+import { Conta } from "./src/model/Conta";
+import { ContaCorrente } from "./src/model/ContaCorrente";
+import { ContaPoupanca } from "./src/model/ContaPoupanca";
 
 export function main() {
 
     let opcao: number;
 
-    //Novas Instâncias da classe Conta (Objetos) //
+    // //Novas Instâncias da classe Conta (Objetos) //
 
-    const c1: Conta = new Conta(1, 1234, 1, 'Samuel', 800000.00);
-    const c2: Conta = new Conta(2, 1234, 2, 'Joaozinho', 1500000.00);
+    // const c1: Conta = new Conta(1, 1234, 1, 'Samuel', 800000.00);
+    // const c2: Conta = new Conta(2, 1234, 2, 'Joaozinho', 1500000.00);
 
-    //Vizualizandoos dados das contas//
-    c1.visualizar();
-    c2.visualizar();
+    // Novas Instâncas da Classe Conta ContaCorrente(objetos)
+
+    // const cc1: ContaCorrente = new ContaCorrente(3, 1234, 1, "Samuel", 1000, 10000000);
+    // const cc2: ContaCorrente = new ContaCorrente(5, 4567, 1, "Joaozinho", 10546, 10000000);
+
+    // cc1.visualisar();
+    // cc2.visualisar();
+
+    // console.log(`\nsaque de R$ 1000000 na conta cc1:  ${cc1.sacar(1000000)}`);
+    // console.log(`\nsaque de R$ 1000000 na conta cc2:  ${cc2.sacar(100000000000)}`);
+
+    // cc1.visualisar();
+    // cc2.visualisar();
+
+    // Conta Poupança
+    const cp1: ContaPoupanca = new ContaPoupanca(3, 1234, 2, "Samuel", 10000, 18, 2, 2005);
+    cp1.visualisar();
+
+
+    // //Vizualizandoos dados das contas//
+    // c1.visualizar();
+    // c2.visualizar();
     
-    //Vizualizando o Saldo da conta 01//
-    console.log(`O Saldo da conta 01 é: ${c1.saldo}`);
-    //Atualizando o Saldo da conta 02//
-    c2.saldo = 9000000.00;
-    //Vizualizando o saldo da conta 02//
-    console.log(`O Saldo da conta 02 é: ${c2.saldo}`);
+    // //Vizualizando o Saldo da conta 01//
+    // console.log(`O Saldo da conta 01 é: ${c1.saldo}`);
+    // //Atualizando o Saldo da conta 02//
+    // c2.saldo = 9000000.00;
+    // //Vizualizando o saldo da conta 02//
+    // console.log(`O Saldo da conta 02 é: ${c2.saldo}`);
 
-    // Saque na Conta 01 e 02
-    console.log(`sacar 100 reais da conta c2: ${c1.sacar(20)}`);
-    c1.visualizar();
-    console.log(`sacar muitos reais da conta c1: ${c2.sacar(20000000000)}`);
-    c2.visualizar();
+    // // Saque na Conta 01 e 02
+    // console.log(`sacar 100 reais da conta c2: ${c1.sacar(20)}`);
+    // c1.visualizar();
+    // console.log(`sacar muitos reais da conta c1: ${c2.sacar(20000000000)}`);
+    // c2.visualizar();
     
-    // Depositar na conta 01 e 02
-    console.log(`Depositar 100 reais da conta c2: ${c1.depositar(20)}`);
-    c1.visualizar();
-    console.log(`Depositar muitos reais da conta c1: ${c2.depositar(20000000000)}`);
-    c2.visualizar();
+    // // Depositar na conta 01 e 02
+    // console.log(`Depositar 100 reais da conta c2: ${c1.depositar(20)}`);
+    // c1.visualizar();
+    // console.log(`Depositar muitos reais da conta c1: ${c2.depositar(20000000000)}`);
+    // c2.visualizar();
 
     while (true) {
 
