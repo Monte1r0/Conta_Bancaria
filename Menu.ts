@@ -3,10 +3,15 @@ import { colors } from "./src/util/Color";
 import { Conta } from "./src/model/Conta";
 import { ContaCorrente } from "./src/model/ContaCorrente";
 import { ContaPoupanca } from "./src/model/ContaPoupanca";
+import { ContaController } from "./src/controller/ContaController";
 
 export function main() {
 
-    let opcao: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let titular: string;
+    const tipoContas = ['conta Corrente', 'Conta Poupanca'];
+
+    const contas: ContaController = new ContaController();
 
     
     while (true) {
@@ -46,12 +51,50 @@ export function main() {
         switch (opcao) {
             case 1:
                 console.log("\n\n🚀 Vamos criar sua conta! 🚀\n\n");
+                    console.log("Digite o numero da Agência: ");
+                    agencia = readlinesync.questionInt("");
+
+                    console.log("Digite o Nome do Titular da Conta: ");
+                    titular = readlinesync.question("");
+
+                    console.log("Digite o Tipo da Conta: ");
+                    tipo = readlinesync.keyInSelect(tipoContas, "", { cancel : false}) + 1;
+
+                    console.log("Digite o Saldo da Conta: ");
+                    saldo = readlinesync.questionFloat("");
+
+                    switch (tipo){
+                        case 1:
+                    
+                            console.log("Digite o Limite da Conta: ");   
+                            limite = readlinesync.questionFloat("");
+                            contas.cadastrar(
+                                new ContaCorrente(contas.gerarNumero(), agencia, tipo, titular, saldo, limite)
+                            )
+                        break;
+                        case 2:
+
+                            console.log("Digite a Data de aniversario da Conta:  ");
+                            aniversario = readlinesync.questionInt("");
+                            contas.cadastrar(
+                                new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario)
+                            )
+                            break;
+                    }
+
+
+
                 break;
             case 2:
                 console.log("\n\n🔍 Explorando todas as contas 🔍\n\n");
+                    contas.listarTodas();
                 break;
             case 3:
                 console.log("\n\n🔎 Procurando sua conta... 🔎\n\n");
+                console.log("Digite o numero da Conta: ")
+                numero = readlinesync.questionInt("")
+
+                contas.procurarPorNumero(numero);
                 break;
             case 4:
                 console.log("\n\n✏️ Atualize os dados da sua conta ✏️\n\n");

@@ -20,7 +20,7 @@ export class ContaCorrente extends Conta{
 		this._limite = value;
 	}
 
-    public visualisar(){
+    public visualizar(){
         super.visualizar();
         console.log(` Limite: ${this._limite}`)
     }
