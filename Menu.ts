@@ -7,8 +7,8 @@ import { ContaController } from "./src/controller/ContaController";
 
 export function main() {
 
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
-    let titular: string;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino, preferencia: number;
+    let titular, portador: string;
     const tipoContas = ['conta Corrente', 'Conta Poupanca'];
 
     const contas: ContaController = new ContaController();
@@ -96,10 +96,23 @@ export function main() {
                 break;
             case 3:
                 console.log("\n\n🔎 Procurando sua conta... 🔎\n\n");
-                console.log("Digite o numero da Conta: ")
-                numero = readlinesync.questionInt("")
+                console.log("\n\nVoce tem Preferencia em Buscar pelo Nome digite (1)  Buscar pelo numero da Conta Digite (2)")
+                preferencia = readlinesync.questionInt("")
+                switch(preferencia){
+                    case 1:
+                        console.log("Digite o nome da Conta: ");
+                        portador = readlinesync.question("");
 
-                contas.procurarPorNumero(numero);
+                        contas.procurarPortitular(portador);
+                    break
+                    case 2:
+                        console.log("Digite o numero da Conta: ")
+                        numero = readlinesync.questionInt("")
+        
+                        contas.procurarPorNumero(numero);
+                    break;
+
+                }
                 break;
             case 4:
                 console.log("\n\n✏️ Atualize os dados da sua conta ✏️\n\n");

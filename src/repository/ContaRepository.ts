@@ -8,7 +8,7 @@ export interface ContaRepository{
     cadastrar(conta: Conta): void;
     atualizar(conta: Conta): void;
     deletar(numero: number): void;
-
+    procurarPortitular(titular: string): void,
 
 
     // Métodos Bancários
