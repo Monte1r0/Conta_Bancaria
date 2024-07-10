@@ -13,6 +13,11 @@ export function main() {
 
     const contas: ContaController = new ContaController();
 
+    contas.cadastrar(new ContaCorrente(contas.gerarNumero(), 123, 1, 'Samuel', 10000000, 1000000000));
+    contas.cadastrar(new ContaCorrente(contas.gerarNumero(), 456, 1, 'Joaozinho', 10000000, 1000000000));
+
+    contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), 789, 2, 'Fernandinho', 850000,5));
+    contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), 159, 2, 'Clara', 140000, 5));
     
     while (true) {
 
@@ -71,7 +76,7 @@ export function main() {
                             contas.cadastrar(
                                 new ContaCorrente(contas.gerarNumero(), agencia, tipo, titular, saldo, limite)
                             )
-                        break;
+                            break;
                         case 2:
 
                             console.log("Digite a Data de aniversario da Conta:  ");
@@ -98,9 +103,55 @@ export function main() {
                 break;
             case 4:
                 console.log("\n\n✏️ Atualize os dados da sua conta ✏️\n\n");
+
+                console.log("Digite o numero da Conta: ");
+                numero = readlinesync.questionInt("");
+
+                let conta = contas.buscarNoArray(numero);
+
+                if (conta){
+
+                console.log("Digite o numero da Agência: ");
+                agencia = readlinesync.questionInt("");
+
+                console.log("Digite o Nome do Titular da Conta: ");
+                titular = readlinesync.question("");
+
+                console.log("Digite o Saldo da Conta: ");
+                saldo = readlinesync.questionFloat("");
+
+                tipo = conta.tipo;
+
+                switch (tipo){
+                    case 1:
+                
+                        console.log("Digite o Limite da Conta: ");   
+                        limite = readlinesync.questionFloat("");
+                        contas.atualizar(
+                            new ContaCorrente(numero, agencia, tipo, titular, saldo, limite)
+                        )
+                        break;
+                    case 2:
+
+                        console.log("Digite a Data de aniversario da Conta:  ");
+                        aniversario = readlinesync.questionInt("");
+                        contas.atualizar(
+                            new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario)
+                        )
+                        break;
+                }
+
+
+            }else{
+                console.log(`\n A Conta numero ${conta} não existe`)
+            }
                 break;
             case 5:
                 console.log("\n\n🗑️ Deletando uma conta 🗑️\n\n");
+                console.log("Digite o numero da Conta: ")
+                numero = readlinesync.questionInt("")
+
+                contas.deletar(numero);
                 break;
             case 6:
                 console.log("\n\n💸 Hora de sacar sua grana 💸\n\n");
