@@ -7,7 +7,7 @@ import { ContaController } from "./src/controller/ContaController";
 
 export function main() {
 
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
     const tipoContas = ['conta Corrente', 'Conta Poupanca'];
 
@@ -155,12 +155,39 @@ export function main() {
                 break;
             case 6:
                 console.log("\n\n💸 Hora de sacar sua grana 💸\n\n");
+
+                console.log("Digite o numero da Conta: ")
+                numero = readlinesync.questionInt("")
+
+                console.log("Digite o valor do saque: ")
+                valor = readlinesync.questionFloat("")
+
+                contas.sacar(numero, valor);
                 break;
             case 7:
                 console.log("\n\n💰 Depositando dinheiro 💰\n\n");
+
+                console.log("Digite o numero da Conta: ")
+                numero = readlinesync.questionInt("")
+
+                console.log("Digite o valor do Deposito: ")
+                valor = readlinesync.questionFloat("")
+
+                contas.depositar(numero, valor);
                 break;
             case 8:
                 console.log("\n\n🔄 Transferindo dinheiro entre contas 🔄\n\n");
+
+                console.log("Digite o numero da Conta: ")
+                numero = readlinesync.questionInt("")
+
+                console.log("Digite o numero da Conta Destino: ")
+                numeroDestino = readlinesync.questionInt("")
+
+                console.log("Digite o valor da Transferencia: ")
+                valor = readlinesync.questionFloat("")
+
+                contas.tranferir(numero, numeroDestino, valor);
                 break;
             default:
                 console.log("\n⚠️ Opção inválida, tente novamente! ⚠️\n");
